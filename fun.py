@@ -10,6 +10,9 @@ import json
 from apscheduler.schedulers.blocking import BlockingScheduler
 import urllib.request, urllib.parse, urllib.error
 
+conn = sqlite3.connect('db.sqlite3', check_same_thread=False)
+cur = conn.cursor()
+
 # Define previous month
 now = datetime.now()
 lastmonth = now - timedelta(weeks=6)
@@ -106,3 +109,9 @@ def get_div(share):
         return round(div_income, 3)
     except:
         return 0
+
+
+def avg_pe(index):
+    cur.execute(f"SELECT AVG(p_e) FROM {index} WHERE p_e > 0")
+    pe_ = cur.fetchone()[0]
+    return pe_

@@ -20,4 +20,4 @@ class DivSerializer(ModelSerializer):
 class IndexSerializer(ModelSerializer):
     class Meta:
         model = Index
-        fields = ["symbol", "name", "momentum", "ma10"]
+        fields = ["symbol", "name", "momentum", "ma10", "avg_pe"]
